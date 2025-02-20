@@ -1,7 +1,15 @@
 import { Grid, GridItem } from "@chakra-ui/react";
 import NavBar from "./components/NavBar";
+import { useColorMode } from "./components/ui/color-mode";
+import { useEffect } from "react";
 
 function App() {
+  const { setColorMode } = useColorMode();
+
+  useEffect(() => {
+    setColorMode('dark');
+  }, []);
+
   return <Grid templateAreas={{
     base: `"nav" "main"`,
     lg: `"nav nav" "aside main"`
@@ -10,8 +18,8 @@ function App() {
       <NavBar />
     </GridItem>
     <GridItem area='aside' bg='gold' display={{
-      base: "none", // auf mobilen Geräten nicht angezeigt
-      lg: "block" // auf großen Screens schon
+      base: "none",
+      lg: "block"
     }}>
       Aside
     </GridItem>
