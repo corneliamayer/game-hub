@@ -1,7 +1,8 @@
-import { Grid, GridItem } from "@chakra-ui/react";
-import NavBar from "./components/NavBar";
-import { useColorMode } from "./components/ui/color-mode";
 import { useEffect } from "react";
+import { Grid, GridItem } from "@chakra-ui/react";
+import { useColorMode } from "./components/ui/color-mode";
+import NavBar from "./components/NavBar";
+import GameGrid from "./components/GameGrid";
 
 function App() {
   const { setColorMode } = useColorMode();
@@ -17,14 +18,14 @@ function App() {
     <GridItem area='nav'>
       <NavBar />
     </GridItem>
-    <GridItem area='aside' bg='gold' display={{
+    <GridItem area='aside' display={{
       base: "none",
       lg: "block"
     }}>
       Aside
     </GridItem>
-    <GridItem area='main' bg='dodgerblue'>
-      Main
+    <GridItem area='main'>
+      <GameGrid />
     </GridItem>
   </Grid>;
 }
