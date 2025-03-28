@@ -1,11 +1,13 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Grid, GridItem } from "@chakra-ui/react";
 import { useColorMode } from "./components/ui/color-mode";
 import NavBar from "./components/NavBar";
 import GameGrid from "./components/GameGrid";
 import GenreList from "./components/GenreList";
+import { Genre } from "./hooks/useGenres";
 
 function App() {
+  const [selectedGenre, setSelectedGenre] = useState<Genre | null>(null);
   const { setColorMode } = useColorMode();
 
   useEffect(() => {
@@ -26,10 +28,10 @@ function App() {
       base: "none",
       lg: "block"
     }} paddingX={5}>
-      <GenreList />
+      <GenreList onSelectGenre={(genre) => setSelectedGenre(genre)} />
     </GridItem>
     <GridItem area='main'>
-      <GameGrid />
+      <GameGrid selectedGenre={selectedGenre} />
     </GridItem>
   </Grid>;
 }
