@@ -23,11 +23,14 @@ const PlatformIconList = ({ platforms }: Props) => {
     web: BsGlobe
   };
 
+  console.log(platforms.map(p => iconMap[p.slug]));
+
   return (
     <HStack marginY={2}>
       {platforms.map(platform =>
-        <Icon key={platform.id} as={iconMap[platform.slug]}
-          color='gray.500' />)}
+        typeof iconMap[platform.slug] !== "undefined" ?
+          <Icon key={platform.id} as={iconMap[platform.slug]}
+          color='gray.500' /> : null)}
     </HStack>
   );
 };
